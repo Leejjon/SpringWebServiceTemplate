@@ -1,0 +1,103 @@
+# API definition for an example project
+swagger: '2.0'
+info:
+  version: "1.0.0"
+  title: JavaWebServiceTemplate
+  description: This an example
+basePath: /api/v1
+consumes:
+  - "application/json"
+produces:
+  - "application/json"
+paths:
+  /examples/{exampleId}:
+    get:
+      operationId: getExample
+      tags:
+        - example
+      parameters:
+        - $ref: "#/parameters/example_parameter"
+      responses:
+        200:
+          description: Everything went right, return the example.
+          schema:
+            - $ref: "#/definitions/example_list"
+        422:
+          description: The input parameters were invalid.
+          schema:
+            - $ref: "#/definitions/ValidationError"
+        500:
+          description: Server threw an error, returns json error object that contains a timestamp, GUID related to the error and a small error message.
+          schema:
+            $ref: "#/definitions/UnexpectedError"
+  /examples:
+    get:
+      operationId: getExistingExamples
+      tags:
+        - examples
+      parameters:
+        - $ref: "#/parameters/parameter_exists"
+      responses:
+        200:
+          description: Everything went right.
+          schema:
+            - $ref: "#/definitions/example_schema"
+        422:
+          description: The input parameters were invalid.
+          schema:
+            - $ref: "#/definitions/ValidationError"
+        500:
+          description: Server threw an error, returns a json error object that contains a timestamp, UUID related to the error and a small error message.
+          schema:
+            $ref: "#/definitions/UnexpectedError"
+definitions:
+  example_schema:
+    type: object
+    properties:
+      result:
+        type: string
+  examples_list:
+    type: array
+    items:
+      $ref: "#/definitions/example_schema"
+  ValidationError:
+    type: object
+    required:
+      - message
+      - timestamp
+    properties:
+      message:
+        description: Contains the main message of the exception, like whether a parameter was invalid.
+        type: string
+      timestamp:
+        description: Use the ISO 8601 date time notation here. example '2016-01-01T10:00:00'
+        type: string
+  UnexpectedError:
+    type: object
+    required:
+      - guid
+      - message
+      - exception
+      - timestamp
+    properties:
+      uuid:
+        description: A universally unique identifier to this exception. Can be used to track the full exception in the logs.
+        type: string
+      message:
+        description: Contaings the main message of the exception.
+        type: string
+      exception:
+        description: The full exception name including the package.
+        type: string
+      timestamp:
+        description: Use the ISO 8601 date time notation here. example '2016-01-01T10:00:00'
+        type: string
+parameters:
+  example_parameter:
+    name: exampleId
+    in: path
+    type: string
+  parameter_exists:
+    name: parameterExists
+    in: query
+    type: boolean
