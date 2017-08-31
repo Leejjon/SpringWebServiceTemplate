@@ -6,7 +6,6 @@ import net.leejjon.javawebservice.controller.IndexController;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
@@ -30,12 +29,5 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 		resolver.setSuffix(".jsp");
 
 		return resolver;
-	}
-
-	@Bean
-	public ReloadableResourceBundleMessageSource messageSource() {
-		ReloadableResourceBundleMessageSource msgSrc = new ReloadableResourceBundleMessageSource();
-		msgSrc.setBasename("classpath:message/messages");
-		return msgSrc;
 	}
 }
