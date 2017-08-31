@@ -14,7 +14,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackageClasses = {IndexController.class, ExampleController.class})
+@ComponentScan(basePackageClasses = {ExampleController.class})
 public class WebMvcConfig extends WebMvcConfigurerAdapter {
 
 	@Override
@@ -26,16 +26,9 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 	@Bean
 	public InternalResourceViewResolver internalResourceViewResolver() {
 		InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-		resolver.setPrefix("/WEB-INF/");
-		resolver.setSuffix(".jsp");
+//		resolver.setPrefix("/WEB-INF/");
+//		resolver.setSuffix(".jsp");
 
 		return resolver;
-	}
-
-	@Bean
-	public ReloadableResourceBundleMessageSource messageSource() {
-		ReloadableResourceBundleMessageSource msgSrc = new ReloadableResourceBundleMessageSource();
-		msgSrc.setBasename("classpath:message/messages");
-		return msgSrc;
 	}
 }

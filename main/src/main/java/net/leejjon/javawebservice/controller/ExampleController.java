@@ -33,7 +33,6 @@ public class ExampleController implements ExamplesApi {
 	}
 
 	@Override
-	@SneakyThrows
 	@RequestMapping(value = "/examples/{exampleId}", method = RequestMethod.GET, produces = "application/json")
 	public ResponseEntity getExample(@PathVariable("exampleId") String exampleId) {
 		if (exampleId == null || exampleId.isEmpty()) {
@@ -56,7 +55,6 @@ public class ExampleController implements ExamplesApi {
 	}
 
 	@Override
-	@SneakyThrows
 	@ApiOperation(value = "", notes = "", response = Void.class, tags = {"examples",})
 	@RequestMapping(value = "/examples", produces = {"application/json"}, method = RequestMethod.GET)
 	public ResponseEntity getExistingExamples(@RequestParam(value = "parameterExists", required = false) Boolean parameterExists) {
@@ -66,8 +64,6 @@ public class ExampleController implements ExamplesApi {
 			validationError.setTimestamp(LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
 			return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(validationError);
 		}
-
-		log.info("Request has been received.");
 
 		List<String> existingExampleResults = exampleService.getExistingExampleResults(parameterExists);
 
