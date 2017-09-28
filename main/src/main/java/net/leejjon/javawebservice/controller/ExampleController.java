@@ -1,5 +1,6 @@
 package net.leejjon.javawebservice.controller;
 
+import lombok.extern.log4j.Log4j;
 import net.leejjon.javawebservice.service.ExampleService;
 
 import java.time.LocalDateTime;
@@ -18,7 +19,6 @@ import org.springframework.web.bind.annotation.*;
 
 import io.swagger.annotations.ApiOperation;
 import lombok.SneakyThrows;
-import lombok.extern.log4j.Log4j;
 
 @Log4j
 @RestController
