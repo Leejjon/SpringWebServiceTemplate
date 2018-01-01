@@ -4,6 +4,6 @@
     <title>Hello</title>
 </head>
 <body>
-<a href="/swagger-ui.html">Swagger API</a>
+<a href="/example/swagger-ui.html">Swagger API</a>
 </body>
 </html>
