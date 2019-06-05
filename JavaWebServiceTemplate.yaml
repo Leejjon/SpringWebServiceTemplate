@@ -21,7 +21,7 @@ paths:
         200:
           description: Everything went right, return the example.
           schema:
-            - $ref: "#/definitions/example_list"
+            - $ref: "#/definitions/examples_list"
         422:
           description: The input parameters were invalid.
           schema:
